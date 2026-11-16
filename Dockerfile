@@ -1,9 +1,11 @@
 
 FROM nodered/node-red:latest
 
-ENV NODE_RED_ENABLE_PROJECTS=false
 ENV TZ=Asia/Tehran
+ENV NODE_RED_ENABLE_PROJECTS=false
 
-EXPOSE 1880
+COPY settings.js /data/settings.js
 
-CMD ["npm", "start", "--", "--userDir", "/data"]
+EXPOSE 10000
+
+CMD ["npm", "start", "--", "--userDir", "/data", "--port", "10000", "--settings", "/data/settings.js"]
